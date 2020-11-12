@@ -19,7 +19,8 @@
       <label>
         URL <br>
         <input 
-          type="text" 
+          type="text"
+          id="create-link-input"
           class="input-field" 
           placeholder="https://www.google.com" 
           required
@@ -37,12 +38,12 @@
     <form id="edit-link-form" action="results.html">
       <label>
         Updated URL <br>
-        <input type="text" required>
+        <input type="text" id="edit-link-input" class="input-field" required>
       </label>
       <br>
       <button type="submit">Update link</button>
       <button type="reset">Reset</button>
-      <button type="button">Cancel</button>
+      <button id="btn-cancel-edit-link" type="button">Cancel</button>
     </form>
   </div>
 

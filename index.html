@@ -18,33 +18,36 @@
     <form id="create-link-form" action="results.html">
       <label>
         URL <br>
+        <input 
+          type="text" 
+          class="input-field" 
+          placeholder="https://www.google.com" 
+          required
+        >
+      </label>
+      <br>
+      <button type="submit" class="btn btn-create-link">Create link</button>
+      <button type="reset" class="btn btn-reset-link">Reset</button>
+      <p><span id="create-link-error-message">Error message</span></p>
+    </form>
+  </div>
+
+  <!-- Edit link overlay form -->
+  <div id="edit-link-container">
+    <form id="edit-link-form" action="results.html">
+      <label>
+        Updated URL <br>
         <input type="text" required>
       </label>
       <br>
-      <button type="submit">Create link</button>
+      <button type="submit">Update link</button>
+      <button type="reset">Reset</button>
+      <button type="button">Cancel</button>
     </form>
   </div>
 
   <!-- Rendered link list -->
   <div id="link-list-container">
-    <div class="link-wrapper">
-      <h3>URL</h3>
-      <a href="">https://www.google.com</a>
-      <button type="submit">Edit</button>
-      <button type="submit">Delete</button>
-    </div>
-    <div class="link-wrapper">
-      <h3>URL</h3>
-      <a href="">https://www.bbc.co.uk/news</a>
-      <button type="submit">Edit</button>
-      <button type="submit">Delete</button>
-    </div>
-    <div class="link-wrapper">
-      <h3>URL</h3>
-      <a href="">https://twitter.com/</a>
-      <button type="submit">Edit</button>
-      <button type="submit">Delete</button>
-    </div>
   </div>
 
   <!-- Page navigation -->
@@ -58,6 +61,6 @@
   <footer>Link List - created by Jack Bellmont</footer>
 
   <script src="app.js"></script>
-  
+
 </body>
 </html>

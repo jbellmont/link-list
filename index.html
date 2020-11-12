@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">  
+  <title>Link List - Overview</title>
+</head>
+<body>
+  <!-- Page title header -->
+  <header>
+    <h1>Link List</h1>
+    <h2>Overview</h2>
+  </header>
+
+  <!-- Create link form -->
+  <div id="create-link-container">
+    <form id="create-link-form" action="results.html">
+      <label>
+        URL <br>
+        <input type="text" required>
+      </label>
+      <br>
+      <button type="submit">Create link</button>
+    </form>
+  </div>
+
+  <!-- Rendered link list -->
+  <div id="link-list-container">
+    <div class="link-wrapper">
+      <h3>URL</h3>
+      <a href="">https://www.google.com</a>
+      <button type="submit">Edit</button>
+      <button type="submit">Delete</button>
+    </div>
+    <div class="link-wrapper">
+      <h3>URL</h3>
+      <a href="">https://www.bbc.co.uk/news</a>
+      <button type="submit">Edit</button>
+      <button type="submit">Delete</button>
+    </div>
+    <div class="link-wrapper">
+      <h3>URL</h3>
+      <a href="">https://twitter.com/</a>
+      <button type="submit">Edit</button>
+      <button type="submit">Delete</button>
+    </div>
+  </div>
+
+  <!-- Page navigation -->
+  <div id="pagination">
+    <a href=""> < </a>
+    <a href=""> 1 </a>
+    <a href=""> > </a>
+  </div>
+
+  <!-- Footer -->
+  <footer>Link List - created by Jack Bellmont</footer>
+
+  <script src="app.js"></script>
+  
+</body>
+</html>

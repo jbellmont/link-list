@@ -37,8 +37,10 @@ const renderLinkList = (page) => {
   const start = linksPerPage * page;
   const end = start + linksPerPage;
   const slicedData = data.slice(start, end);
+  let linkNumber = start; // number rendered on each Link Item
   for (let i = 0; i < slicedData.length; i++) {
-    createLinkListItem(slicedData[i], i);
+    createLinkListItem(slicedData[i], linkNumber);
+    linkNumber++;
   }
 };
 
@@ -126,6 +128,13 @@ const checkValidURL = (form) => {
   } else {
     return;
   }
+  // If blank value, show error message
+  if (url === '') {
+    const errorMessage = document.getElementById('create-link-error-message');
+    errorMessage.style.display = 'block';
+    errorMessage.textContent = 'Please enter a valid URL, including http(s)://';
+  }
+  // Check for valid URL
   const regex = /^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,}))\.?)(?::\d{2,5})?(?:[/?#]\S*)?$/i;
   if (regex.test(url)) {
     return true;
@@ -139,6 +148,10 @@ const onCreateLinkSubmit = (e) => {
   e.preventDefault();
   // URL form validation check
   if (!checkValidURL('create')) {
+    // If invalid URL, display error message
+    const errorMessage = document.getElementById('create-link-error-message');
+    errorMessage.style.display = 'block';
+    errorMessage.textContent = 'Please enter a valid URL, including http(s)://';
     return;
   };
   // Update a copy of localSorage data locally, and then push to browser localStorage 
@@ -157,30 +170,36 @@ createLinkForm.addEventListener('submit', onCreateLinkSubmit);
 
 // Link item button functions
 const onDeleteLinkItemClick = (e) => {
-  if (e.target.matches('.btn-delete-link')) {
-    // Update a copy of localSorage data locally, and then push to browser localStorage 
-    const newLocalStorageData = JSON.parse(localStorage.linkListData);
-    const linkIndex = e.target.parentNode.dataset.id; // from custom HTML attribute
-    newLocalStorageData.splice(linkIndex, 1);
-    localStorage.setItem('linkListData', JSON.stringify(newLocalStorageData));
-    // Remove all list items and then re-render with updated localStorage data
-    renderAfterDataChange();
-  }
+  if (e.target.classList.contains('btn-delete-link') || 
+      e.target.classList.contains('fa-trash-alt')) {
+        // Update a copy of localSorage data locally, and then push to browser localStorage 
+        const newLocalStorageData = JSON.parse(localStorage.linkListData);
+        const linkIndex = e.target.parentNode.parentNode.dataset.id; // from custom HTML attribute
+        newLocalStorageData.splice(linkIndex, 1);
+        localStorage.setItem('linkListData', JSON.stringify(newLocalStorageData));
+        // Remove all list items and then re-render with updated localStorage data
+        renderAfterDataChange();
+      }
   return;
 };
 document.addEventListener('click', onDeleteLinkItemClick);
 
 const onEditLinkItemClick = (e) => {
-  if (e.target.matches('.btn-edit-link')) {
-    const editURLformContainer = document.getElementById('edit-link-container');
-    editURLformContainer.style.display = 'block';
-    const editLinkInputField = document.getElementById('edit-link-input');
-    const localStorageData = JSON.parse(localStorage.linkListData);
-    editLinkInputField.value = localStorageData[e.target.parentNode.dataset.id].url;
-    // Give the form the ID of the currently edited link item
-    const editURLform = document.getElementById('edit-link-form');
-    editURLform.setAttribute('data-id', e.target.parentNode.dataset.id);
-  }
+  if (e.target.classList.contains('btn-edit-link') || 
+      e.target.classList.contains('fa-edit')) {
+        const editURLformContainer = document.getElementById('edit-link-container-overlay');
+        editURLformContainer.style.display = 'block';
+        const editLinkInputField = document.getElementById('edit-link-input');
+        const localStorageData = JSON.parse(localStorage.linkListData);
+        if (e.target.classList.contains('btn-edit-link')) {
+          editLinkInputField.value = localStorageData[e.target.parentNode.parentNode.dataset.id].url;
+        } else {
+          editLinkInputField.value = localStorageData[e.target.parentNode.parentNode.parentNode.dataset.id].url;
+        }
+        // Give the form the ID of the currently edited link item
+        const editURLform = document.getElementById('edit-link-form');
+        editURLform.setAttribute('data-id', e.target.parentNode.dataset.id);
+      }
   return;
 };
 document.addEventListener('click', onEditLinkItemClick);
@@ -206,7 +225,7 @@ const onUpdateLinkSubmit = (e) => {
 editURLform.addEventListener('submit', onUpdateLinkSubmit);
 
 const onCancelClick = () => {
-  const editURLformContainer = document.getElementById('edit-link-container');
+  const editURLformContainer = document.getElementById('edit-link-container-overlay');
   // Hide edit url form
   editURLformContainer.style.display = 'none';
 };

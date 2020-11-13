@@ -26,7 +26,6 @@
           id="create-link-input"
           class="form-input-field" 
           placeholder="https://www.google.com" 
-          required
         >
       </label>
       <br>
@@ -43,17 +42,19 @@
   </div>
 
   <!-- Edit link overlay form -->
-  <div id="edit-link-container">
-    <form id="edit-link-form" action="results.html">
-      <label>
-        Updated URL <br>
-        <input type="text" id="edit-link-input" class="input-field" required>
-      </label>
-      <br>
-      <button type="submit">Update link</button>
-      <button type="reset">Reset</button>
-      <button id="btn-cancel-edit-link" type="button">Cancel</button>
-    </form>
+  <div id="edit-link-container-overlay">
+    <div id="edit-link-container">
+      <form id="edit-link-form" action="results.html">
+        <label>
+          Updated URL <br>
+          <input type="text" id="edit-link-input" class="form-input-field blue-input">
+        </label>
+        <br>
+        <button type="submit" class="btn btn-blue">Update</button>
+        <button type="reset" class="btn btn-blue">Reset</button>
+        <button id="btn-cancel-edit-link" type="button" class="btn btn-blue">Cancel</button>
+      </form>
+    </div>
   </div>
 
   <!-- Rendered link list -->

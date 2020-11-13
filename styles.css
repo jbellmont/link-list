@@ -75,8 +75,9 @@ h1, h2, h3 {
 .btn-container-left {
   align-items: center;
   display: flex;
-  flex-grow: 3;
+  flex-grow: 1;
   text-align: left;
+  width: 170px;
 }
 
 .btn-container-right {
@@ -93,9 +94,16 @@ h1, h2, h3 {
   width: 50px;
 }
 
+#create-link-error-message {
+  display: none;
+  font-size: .7rem;
+}
+
 /* Link list */
 #link-list-container {
   padding: 0;
+  position: relative;
+  min-height: 90vh;
 }
 
 .link-list-item {
@@ -134,6 +142,33 @@ h1, h2, h3 {
   width: 20px;
 }
 
+/* Edit link overlay */
+#edit-link-container-overlay { /* darkens the background */
+  background-color: rgba(0, 0, 0, 0.39);
+  display: none;
+  height: 100%;
+  left:0;
+  position: fixed;
+  top:0;
+  width: 100%;
+  z-index: 500;
+}
+
+#edit-link-container {
+  background: #fff;
+  left: 50%;
+  padding: 20px;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  z-index: 1000;
+}
+
+.blue-input {
+  background: var(--light-grey);
+  border: 1px solid var(--light-blue);
+}
 
 /* Pagination */
 #pagination {
@@ -156,16 +191,44 @@ h1, h2, h3 {
   width: 25px;
 }
 
-
-#edit-link-container {
-  display: none;
-}
-
-
 /* Footer */
 #footer {
   background: var(--dark-blue);
   color: #fff;
   padding: var(--mobile-padding);
   text-align: center;
+}
+
+/* Results page styling */
+#submission-container {
+  height: 450px;
+  padding: 20px var(--mobile-padding);
+}
+
+.submitted-url {
+  background: var(--mid-blue);
+  border-left: solid 5px var(--light-blue);
+  color: #fff;  
+  display: block;
+  font-weight: 400;
+  margin: var(--mobile-padding);
+  padding: var(--mobile-padding);
+}
+
+.btn-blue {
+  background: var(--mid-blue);
+  color: #fff;
+  margin-top: var(--mobile-padding);
+}
+
+.tick {
+  color: #339933;
+}
+
+.shadow {
+  box-shadow: rgba(0, 0, 0, 0.637) 0px 2px 2.5px;
+}
+
+.footer-shadow {
+  box-shadow: rgba(0, 0, 0, 0.637) 5px 0px 5px;
 }

@@ -1,3 +1,7 @@
+// Global variables
+let currentPage = 1;
+const linksPerPage = 20;
+
 // First visit localStorage dummy data
 const dummyData = [
   {
@@ -21,21 +25,28 @@ const checkFirstVisit = () => {
 };
 
 // Render functions
-const renderLinkList = () => {
+const renderLinkList = (page) => {
   // If first visit, populate with dummy data
   if (localStorage.getItem('linkListfirstVisit') === 'true') {
     localStorage.setItem('linkListData', JSON.stringify(dummyData));
   } 
   // Parse local storage data and render HTML for each link
   const data = JSON.parse(localStorage.getItem("linkListData"));
-  data.map((linkItem, index) => createLinkListItem(linkItem, index));
+  // Loop setup, to ensure links are rendered based on current page
+  page--;
+  const start = linksPerPage * page;
+  const end = start + linksPerPage;
+  const slicedData = data.slice(start, end);
+  for (let i = 0; i < slicedData.length; i++) {
+    createLinkListItem(slicedData[i], i);
+  }
 };
 
 const renderAfterDataChange = () => {
   // Remove all list items and then re-render with updated localStorage data
   const linkList = document.getElementById('link-list-container');
   linkList.innerHTML = "";
-  renderLinkList();
+  renderLinkList(currentPage);
 }
 
 const createLinkListItem = (linkData, index) => {
@@ -52,6 +63,54 @@ const createLinkListItem = (linkData, index) => {
   `;
   linkList.append(newLink);
 };
+
+const createPaginationButton = (page) => {
+  const button = document.createElement('button');
+  button.textContent = page;
+  button.classList.add('btn-pagination-number')
+  const paginationWrapper = document.getElementById('pagination-button-wrapper');
+  paginationWrapper.appendChild(button);
+};
+
+const renderPaginationButtons = () => {
+  const data = JSON.parse(localStorage.getItem("linkListData"));
+  numberOfButtons = Math.ceil(data.length / linksPerPage);
+  for (let i = 0; i < numberOfButtons; i++) {
+    createPaginationButton(i + 1);
+  }
+};
+
+// Pagination button functions
+const onChangeCurrentPageClick = (e) => {
+  currentPage = Number(e.target.textContent);
+  renderAfterDataChange();
+};
+window.addEventListener('click', (e) => { // Attach event listener for the pagination buttons
+  if (e.target.matches('.btn-pagination-number')) {
+    onChangeCurrentPageClick(e);
+  }
+});
+
+const onPreviousPageClick = () => {
+  if (currentPage !== 1) {
+    currentPage--;
+    renderAfterDataChange();
+  }
+  return;
+};
+document.getElementById('btn-previous-page').addEventListener('click', onPreviousPageClick);
+
+const onNextPageClick = () => {
+  const data = JSON.parse(localStorage.getItem("linkListData"));
+  numberOfPages = Math.ceil(data.length / linksPerPage);
+  if (currentPage !== numberOfPages) {
+    currentPage++;
+    renderAfterDataChange();
+  }
+  return;
+};
+document.getElementById('btn-next-page').addEventListener('click', onNextPageClick);
+
 
 // URL form validation
 const checkValidURL = (form) => {
@@ -80,7 +139,7 @@ const onCreateLinkSubmit = (e) => {
     return;
   };
   // Update a copy of localSorage data locally, and then push to browser localStorage 
-  const url = document.getElementById('#create-link-input').value;
+  const url = document.getElementById('create-link-input').value;
   const newLocalStorageData = JSON.parse(localStorage.linkListData);
   newLocalStorageData.push({url});
   localStorage.setItem('linkListData', JSON.stringify(newLocalStorageData));
@@ -151,7 +210,7 @@ const onCancelClick = () => {
 const cancelBtn = document.getElementById('btn-cancel-edit-link');
 cancelBtn.addEventListener('click', onCancelClick);
 
-
-// Global event listeners
-window.addEventListener('DOMContentLoaded', checkFirstVisit);
-window.addEventListener('DOMContentLoaded', renderLinkList);
+// On page load function calls
+checkFirstVisit();
+renderLinkList(currentPage);
+renderPaginationButtons();

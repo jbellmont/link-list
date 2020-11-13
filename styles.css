@@ -1,4 +1,53 @@
-/* Import font here */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+/* Global styles and variables */
+:root {
+  /* Font */
+  --global-font: 'Roboto', sans-serif;
+  /* Colour palette */
+  /* https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=1976D2 */
+  --dark-blue: #004ba0;
+  --mid-blue: #1976d2;
+  --light-blue: #63a4ff;
+  --light-grey: #f5f5f6;
+  /* Margin and Padding */
+  --mobile-padding: 10px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(---light-grey);
+  font-family: var(--global-font);
+}
+
+h1, h2 {
+  font-weight: 300;
+}
+
+/* Header section */
+
+#page-header-container {
+  background: var(--dark-blue);
+  border-bottom: solid 2px var(--light-blue);
+  color: #fff;
+  padding: 5px;
+}
+
+/* Create link form */
+#create-link-container {
+  background: var(--mid-blue);
+  color: #fff;
+  height: 150px;
+  padding: var(--mobile-padding);
+}
+
+
+
 #edit-link-container {
   display: none;
 }

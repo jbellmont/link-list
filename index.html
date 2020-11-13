@@ -3,13 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">  
+  <link rel="stylesheet" href="styles.css">
+  <!-- FontAwesome icon import -->
+  <script src="https://kit.fontawesome.com/b4895fab6a.js" crossorigin="anonymous"></script>
   <title>Link List - Overview</title>
 </head>
 <body>
   <!-- Page title header -->
-  <header>
-    <h1>Link List</h1>
+  <header id="page-header-container">
+    <h1><i class="fas fa-link"></i> Link List</h1>
     <h2>Overview</h2>
   </header>
 
@@ -53,9 +55,9 @@
 
   <!-- Page navigation -->
   <div id="pagination">
-    <a href=""> < </a>
-    <a href=""> 1 </a>
-    <a href=""> > </a>
+    <button type="button" id="btn-previous-page"> < </button>
+    <div id="pagination-button-wrapper"></div>
+    <button type="button" id="btn-next-page"> > </button>
   </div>
 
   <!-- Footer -->

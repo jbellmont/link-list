@@ -8,10 +8,12 @@
   /* https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=1976D2 */
   --dark-blue: #004ba0;
   --mid-blue: #1976d2;
+  --mid-blue-pale: #1976d22d;
   --light-blue: #63a4ff;
   --light-grey: #f5f5f6;
-  /* Margin and Padding */
+  /* Padding */
   --mobile-padding: 10px;
+  --large-padding: 20px;
 }
 
 * {
@@ -36,6 +38,12 @@ h1, h2, h3 {
   padding: 15px var(--mobile-padding);
 }
 
+@media (min-width: 1024px) {
+  #page-header-container {
+    padding: var(--large-padding);
+  }
+}
+
 .bolder-header {
   font-weight: 400;
 }
@@ -45,7 +53,15 @@ h1, h2, h3 {
   background: var(--mid-blue);
   box-shadow: rgba(0, 0, 0, 0.637) 0px 2px 2.5px;
   color: #fff;
+  margin-bottom: 3px;
   padding: var(--mobile-padding);
+  z-index: 100;
+}
+
+@media (min-width: 1024px) { /* Increase padding on laptop and above screens */
+  #create-link-container {
+    padding: var(--large-padding);
+  }
 }
 
 .form-cta {
@@ -64,12 +80,28 @@ h1, h2, h3 {
   height: 30px;
   margin: 2px 0 var(--mobile-padding);
   padding: 0 var(--mobile-padding);
+  transition: all 0.2s;
   width: 100%;
+}
+
+.form-input-field:focus {
+  box-shadow: 0 0 5px #000;
 }
 
 .btn-container {
   display: flex;
   text-align: right;
+  width: 100%;
+}
+
+@media (min-width: 768px) { /* Change input width on tablet devices */
+  .form-input-field {
+    width: 50%;
+  }
+
+  .btn-container {
+    width: 50%;
+  }
 }
 
 .btn-container-left {
@@ -89,9 +121,17 @@ h1, h2, h3 {
   background: #fff;
   border: 0;
   border-radius: 3px;
+  box-shadow: 0 0 3px var(--dark-blue);
   font: 100% var(--global-font);
+  font-weight: 400;
   height: 30px;
+  transition: all 0.2s;
   width: 50px;
+}
+
+.btn:hover {
+  background: var(--light-grey);
+  cursor: pointer;
 }
 
 #create-link-error-message {
@@ -108,10 +148,21 @@ h1, h2, h3 {
 
 .link-list-item {
   align-items: center;
-  border-bottom: var(--mid-blue) 1px solid;
+  border-bottom: var(--mid-blue-pale) 1px solid;
   display: flex;
   height: 40px;
   padding: 0 var(--mobile-padding);
+  z-index: -1;
+}
+
+@media (min-width: 1024px) {
+  .link-list-item {
+    padding: var(--large-padding);
+  }
+}
+
+.link-list-item:hover {
+  background: var(--light-grey);
 }
 
 .link-number {
@@ -126,15 +177,41 @@ h1, h2, h3 {
 }
 
 .link-url {
-  width: 200px;
-  white-space: nowrap;
+  color: #000;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 200px;
+}
+
+@media (min-width: 425px) { /* longer visible URL for wider mobile devices */
+  .link-url {
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 768px) { /* longer visible URL for tablets */
+  .link-url {
+    max-width: 550px;
+  }
+}
+
+@media (min-width: 1024px) { /* longer visible URL for laptops and above */
+  .link-url {
+    max-width: 1000px;
+  }
 }
 
 .link-buttons {
   flex-grow: 1;
   text-align: right;
+}
+
+.link-buttons-btn {
+  background: 0;
+  border: 0;
+  cursor: pointer;
+  width: 30px;
 }
 
 .btn-delete-link, .btn-edit-link {
@@ -156,13 +233,20 @@ h1, h2, h3 {
 
 #edit-link-container {
   background: #fff;
+  border-radius: 5px;
   left: 50%;
   padding: 20px;
   position: fixed;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 200px;
+  width: 300px;
   z-index: 1000;
+}
+
+@media (min-width: 768px) {
+  #edit-link-container {
+    width: 500px;
+  }
 }
 
 .blue-input {
@@ -178,6 +262,13 @@ h1, h2, h3 {
   display: flex;
   height: 50px;
   justify-content: center;
+  margin-top: 3px;
+}
+
+@media (min-width: 1024px) { /* Increase height on laptop and larger screens */
+  #pagination {
+    height: 75px;
+  }
 }
 
 .btn-pag {
@@ -219,6 +310,10 @@ h1, h2, h3 {
   background: var(--mid-blue);
   color: #fff;
   margin-top: var(--mobile-padding);
+}
+
+.btn-blue:hover{
+  color: #000;
 }
 
 .tick {

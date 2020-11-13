@@ -60,8 +60,8 @@ const createLinkListItem = (linkData, index) => {
     <h3 class="link-number">${index + 1}</h3>
     <a href="${linkData.url}" class="link-url">${linkData.url}</a>
     <div class="link-buttons">
-      <button type="button" class="btn btn-edit-link"><i class="fas fa-edit"></i></button>
-      <button type="button" class="btn btn-delete-link"><i class="fas fa-trash-alt"></i></button>
+      <button type="button" class="link-buttons-btn btn-edit-link"><i class="fas fa-edit"></i></button>
+      <button type="button" class="link-buttons-btn btn-delete-link"><i class="fas fa-trash-alt"></i></button>
     </div>
   </div>
   `;
@@ -70,9 +70,15 @@ const createLinkListItem = (linkData, index) => {
 
 const createPaginationButton = (page) => {
   const button = document.createElement('button');
-  button.textContent = page;
+  if (page === currentPage) {
+    // underlines active page number
+    button.innerHTML = `<u>${page}</u>`; 
+  } else {
+    button.textContent = page;
+  }
   button.classList.add('btn-pagination-number');
   button.classList.add('btn-pag');
+  button.classList.add('btn');
   const paginationWrapper = document.getElementById('pagination-button-wrapper');
   paginationWrapper.appendChild(button);
 };
@@ -80,6 +86,8 @@ const createPaginationButton = (page) => {
 const renderPaginationButtons = () => {
   const data = JSON.parse(localStorage.getItem("linkListData"));
   numberOfButtons = Math.ceil(data.length / linksPerPage);
+  const paginationWrapper = document.getElementById('pagination-button-wrapper');
+  paginationWrapper.innerHTML = '';
   for (let i = 0; i < numberOfButtons; i++) {
     createPaginationButton(i + 1);
   }
@@ -89,6 +97,7 @@ const renderPaginationButtons = () => {
 const onChangeCurrentPageClick = (e) => {
   currentPage = Number(e.target.textContent);
   renderAfterDataChange();
+  renderPaginationButtons();
 };
 window.addEventListener('click', (e) => { // Attach event listener for the pagination buttons
   if (e.target.matches('.btn-pagination-number')) {
@@ -100,6 +109,7 @@ const onPreviousPageClick = () => {
   if (currentPage !== 1) {
     currentPage--;
     renderAfterDataChange();
+    renderPaginationButtons();
   }
   return;
 };
@@ -111,6 +121,7 @@ const onNextPageClick = () => {
   if (currentPage !== numberOfPages) {
     currentPage++;
     renderAfterDataChange();
+    renderPaginationButtons();
   }
   return;
 };

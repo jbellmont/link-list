@@ -22,32 +22,150 @@
 
 body {
   background: var(---light-grey);
-  font-family: var(--global-font);
+  font: 12px var(--global-font);
 }
 
-h1, h2 {
+h1, h2, h3 {
   font-weight: 300;
 }
 
 /* Header section */
-
 #page-header-container {
   background: var(--dark-blue);
-  border-bottom: solid 2px var(--light-blue);
   color: #fff;
-  padding: 5px;
+  padding: 15px var(--mobile-padding);
+}
+
+.bolder-header {
+  font-weight: 400;
 }
 
 /* Create link form */
 #create-link-container {
   background: var(--mid-blue);
+  box-shadow: rgba(0, 0, 0, 0.637) 0px 2px 2.5px;
   color: #fff;
-  height: 150px;
   padding: var(--mobile-padding);
 }
 
+.form-cta {
+  font-weight: 400;
+  padding-bottom: var(--mobile-padding);
+}
+
+.form-label {
+  font-size: .75rem;
+}
+
+.form-input-field {
+  border: 0;
+  border-radius: 3px;
+  font: 100% var(--global-font);
+  height: 30px;
+  margin: 2px 0 var(--mobile-padding);
+  padding: 0 var(--mobile-padding);
+  width: 100%;
+}
+
+.btn-container {
+  display: flex;
+  text-align: right;
+}
+
+.btn-container-left {
+  align-items: center;
+  display: flex;
+  flex-grow: 3;
+  text-align: left;
+}
+
+.btn-container-right {
+  flex-grow: 1;
+  text-align: right;
+}
+
+.btn {
+  background: #fff;
+  border: 0;
+  border-radius: 3px;
+  font: 100% var(--global-font);
+  height: 30px;
+  width: 50px;
+}
+
+/* Link list */
+#link-list-container {
+  padding: 0;
+}
+
+.link-list-item {
+  align-items: center;
+  border-bottom: var(--mid-blue) 1px solid;
+  display: flex;
+  height: 40px;
+  padding: 0 var(--mobile-padding);
+}
+
+.link-number {
+  background: var(--mid-blue);
+  border-radius: 20px;
+  color: #fff;
+  font-size: .6rem;
+  margin-right: var(--mobile-padding);
+  padding: 5px;
+  text-align: center;
+  min-width: 20px;
+}
+
+.link-url {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.link-buttons {
+  flex-grow: 1;
+  text-align: right;
+}
+
+.btn-delete-link, .btn-edit-link {
+  color: var(--dark-blue);
+  width: 20px;
+}
+
+
+/* Pagination */
+#pagination {
+  align-items: center;
+  background: var(--mid-blue);
+  box-shadow: rgba(0, 0, 0, 0.637) 5px 0px 5px;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+}
+
+.btn-pag {
+  background: #fff;
+  border: 0;
+  border-radius: 2px;
+  font: .75rem var(--global-font);
+  font-weight: 500;
+  height: 25px;
+  margin: 5px;
+  width: 25px;
+}
 
 
 #edit-link-container {
   display: none;
+}
+
+
+/* Footer */
+#footer {
+  background: var(--dark-blue);
+  color: #fff;
+  padding: var(--mobile-padding);
+  text-align: center;
 }

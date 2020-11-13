@@ -11,27 +11,34 @@
 <body>
   <!-- Page title header -->
   <header id="page-header-container">
-    <h1><i class="fas fa-link"></i> Link List</h1>
-    <h2>Overview</h2>
+    <h1 class="bolder-header">Link List</h1>
+    <h2 class="">Overview</h2>
   </header>
 
   <!-- Create link form -->
   <div id="create-link-container">
     <form id="create-link-form" action="results.html">
       <label>
-        URL <br>
+        <h3 class="form-cta">Create new link</h3>
+        <span class="form-label">URL</span> <br>
         <input 
           type="text"
           id="create-link-input"
-          class="input-field" 
+          class="form-input-field" 
           placeholder="https://www.google.com" 
           required
         >
       </label>
       <br>
-      <button type="submit" class="btn btn-create-link">Create link</button>
-      <button type="reset" class="btn btn-reset-link">Reset</button>
-      <p><span id="create-link-error-message">Error message</span></p>
+      <div class="btn-container">
+        <div class="btn-container-left">
+          <span id="create-link-error-message">Error message</span>
+        </div>
+        <div class="btn-container-right">
+          <button type="submit" class="btn btn-create-link">Add</button>
+          <button type="reset" class="btn btn-reset-link">Reset</button>
+        </div>
+      </div>
     </form>
   </div>
 
@@ -55,13 +62,13 @@
 
   <!-- Page navigation -->
   <div id="pagination">
-    <button type="button" id="btn-previous-page"> < </button>
+    <button type="button" id="btn-previous-page" class="btn-pag"> < </button>
     <div id="pagination-button-wrapper"></div>
-    <button type="button" id="btn-next-page"> > </button>
+    <button type="button" id="btn-next-page" class="btn-pag"> > </button>
   </div>
 
   <!-- Footer -->
-  <footer>Link List - created by Jack Bellmont</footer>
+  <footer id="footer"><strong>Link List</strong> - built by Jack Bellmont</footer>
 
   <script src="app.js"></script>
 

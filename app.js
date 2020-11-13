@@ -54,11 +54,13 @@ const createLinkListItem = (linkData, index) => {
   const newLink = document.createElement('div');
   newLink.classList.add('link-wrapper');
   // Creates a link list item from linkData, which is a localStorage array value
-  newLink.innerHTML = `<div data-id=${index}>
-  <h3>#${index + 1}</h3>
-  <a href="">${linkData.url}</a>
-  <button type="button" class="btn btn-edit-link">Edit</button>
-  <button type="button" class="btn btn-delete-link">Delete</button>
+  newLink.innerHTML = `<div class="link-list-item" data-id=${index}>
+    <h3 class="link-number">${index + 1}</h3>
+    <a href="${linkData.url}" class="link-url">${linkData.url}</a>
+    <div class="link-buttons">
+      <button type="button" class="btn btn-edit-link"><i class="fas fa-edit"></i></button>
+      <button type="button" class="btn btn-delete-link"><i class="fas fa-trash-alt"></i></button>
+    </div>
   </div>
   `;
   linkList.append(newLink);
@@ -67,7 +69,8 @@ const createLinkListItem = (linkData, index) => {
 const createPaginationButton = (page) => {
   const button = document.createElement('button');
   button.textContent = page;
-  button.classList.add('btn-pagination-number')
+  button.classList.add('btn-pagination-number');
+  button.classList.add('btn-pag');
   const paginationWrapper = document.getElementById('pagination-button-wrapper');
   paginationWrapper.appendChild(button);
 };

@@ -74,6 +74,7 @@ h1, h2, h3 {
 }
 
 .form-cta {
+  font-size: .9rem;
   font-weight: 400;
   padding-bottom: var(--small-padding);
 }
@@ -89,7 +90,7 @@ h1, h2, h3 {
   height: 30px;
   margin: 2px 0 var(--small-padding);
   padding: 0 var(--small-padding);
-  transition: all 0.2s;
+  transition: all .2s;
   width: 100%;
 }
 
@@ -154,7 +155,7 @@ h1, h2, h3 {
   font: 100% var(--global-font);
   font-weight: 400;
   height: 30px;
-  transition: all 0.2s;
+  transition: all .2s;
   width: 50px;
 }
 
@@ -341,7 +342,10 @@ h1, h2, h3 {
   display: block;
   font-weight: 400;
   margin: var(--small-padding) 0;
+  overflow: hidden;
   padding: var(--small-padding);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* Pagination */
@@ -393,7 +397,10 @@ h1, h2, h3 {
   display: block;
   font-weight: 400;
   margin: var(--small-padding);
+  overflow: hidden;
   padding: var(--small-padding);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 @media (min-width: 768px) { /* Reduce width of input on tablet and larger sizes */

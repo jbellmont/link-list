@@ -7,13 +7,13 @@
   /* Colour palette */
   /* https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=1976D2 */
   --dark-blue: #004ba0;
-  --mid-blue: #1976d2;
-  --mid-blue-pale: #1976d22d;
   --light-blue: #63a4ff;
   --light-grey: #f5f5f6;
+  --mid-blue: #1976d2;
+  --mid-blue-pale: #1976d22d;
   /* Padding */
-  --mobile-padding: 10px;
   --large-padding: 20px;
+  --small-padding: 10px;
 }
 
 * {
@@ -24,7 +24,16 @@
 
 body {
   background: var(---light-grey);
+  display: flex;
+  flex-direction: column;
   font: 12px var(--global-font);
+  min-height: 100vh;
+}
+
+@media (min-width: 1440px) { /* Increase font size on larger screens */
+  body {
+    font: 14px var(--global-font);
+  }
 }
 
 h1, h2, h3 {
@@ -35,10 +44,10 @@ h1, h2, h3 {
 #page-header-container {
   background: var(--dark-blue);
   color: #fff;
-  padding: 15px var(--mobile-padding);
+  padding: 15px var(--small-padding);
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1024px) { /* Increase padding on laptop and above screens */
   #page-header-container {
     padding: var(--large-padding);
   }
@@ -54,7 +63,7 @@ h1, h2, h3 {
   box-shadow: rgba(0, 0, 0, 0.637) 0px 2px 2.5px;
   color: #fff;
   margin-bottom: 3px;
-  padding: var(--mobile-padding);
+  padding: var(--small-padding);
   z-index: 100;
 }
 
@@ -66,7 +75,7 @@ h1, h2, h3 {
 
 .form-cta {
   font-weight: 400;
-  padding-bottom: var(--mobile-padding);
+  padding-bottom: var(--small-padding);
 }
 
 .form-label {
@@ -78,8 +87,8 @@ h1, h2, h3 {
   border-radius: 3px;
   font: 100% var(--global-font);
   height: 30px;
-  margin: 2px 0 var(--mobile-padding);
-  padding: 0 var(--mobile-padding);
+  margin: 2px 0 var(--small-padding);
+  padding: 0 var(--small-padding);
   transition: all 0.2s;
   width: 100%;
 }
@@ -95,12 +104,32 @@ h1, h2, h3 {
 }
 
 @media (min-width: 768px) { /* Change input width on tablet devices */
-  .form-input-field {
+  .form-input-field-half {
     width: 50%;
   }
 
   .btn-container {
     width: 50%;
+  }
+}
+
+@media (min-width: 1440px) { /* Change input width on larger monitors */
+  .form-input-field-half {
+    width: 40%;
+  }
+
+  .btn-container {
+    width: 40%;
+  }
+}
+
+@media (min-width: 2560px) { /* Change input width on retina monitors */
+  .form-input-field-half {
+    width: 30%;
+  }
+
+  .btn-container {
+    width: 30%;
   }
 }
 
@@ -134,16 +163,15 @@ h1, h2, h3 {
   cursor: pointer;
 }
 
-#create-link-error-message {
+#create-link-error-message, #edit-link-error-message {
   display: none;
   font-size: .7rem;
 }
 
 /* Link list */
 #link-list-container {
+  flex: 1;
   padding: 0;
-  position: relative;
-  min-height: 90vh;
 }
 
 .link-list-item {
@@ -151,13 +179,19 @@ h1, h2, h3 {
   border-bottom: var(--mid-blue-pale) 1px solid;
   display: flex;
   height: 40px;
-  padding: 0 var(--mobile-padding);
+  padding: 0 var(--small-padding);
   z-index: -1;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1024px) { /* Increase padding on laptop and above screens */
   .link-list-item {
     padding: var(--large-padding);
+  }
+}
+
+@media (min-width: 2560px) { /* Increase link item height on retina screens */
+  .link-list-item {
+    height: 60px;
   }
 }
 
@@ -170,33 +204,37 @@ h1, h2, h3 {
   border-radius: 20px;
   color: #fff;
   font-size: .6rem;
-  margin-right: var(--mobile-padding);
+  margin-right: var(--small-padding);
+  min-width: 20px;
   padding: 5px;
   text-align: center;
-  min-width: 20px;
 }
 
 .link-url {
   color: #000;
+  max-width: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 200px;
 }
 
-@media (min-width: 425px) { /* longer visible URL for wider mobile devices */
+.link-url:hover {
+  color: var(--dark-blue);
+}
+
+@media (min-width: 425px) { /* Longer visible URL for wider mobile devices */
   .link-url {
     max-width: 300px;
   }
 }
 
-@media (min-width: 768px) { /* longer visible URL for tablets */
+@media (min-width: 768px) { /* Longer visible URL for tablets */
   .link-url {
     max-width: 550px;
   }
 }
 
-@media (min-width: 1024px) { /* longer visible URL for laptops and above */
+@media (min-width: 1024px) { /* Longer visible URL for laptops and above */
   .link-url {
     max-width: 1000px;
   }
@@ -220,9 +258,47 @@ h1, h2, h3 {
 }
 
 /* Edit link overlay */
-#edit-link-container-overlay { /* darkens the background */
-  background-color: rgba(0, 0, 0, 0.39);
+#edit-link-container-overlay { 
   display: none;
+}
+
+#edit-link-form {
+  width: 100%;
+}
+
+.edit-link-buttons-container {
+  display: flex;
+  text-align: right;
+  width: 100%;
+}
+
+.edit-link-buttons-container-left {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  text-align: left;
+  width: 50px;
+}
+
+@media (min-width: 768px) { /* Increase error msg area on tablet and above */
+  .edit-link-buttons-container-left {
+    width: 150px;
+  }
+}
+
+.edit-link-buttons-container-right {
+  flex-grow: 1;
+  text-align: right;
+}
+
+.blue-input {
+  background: var(--light-grey);
+  border: 1px solid var(--light-blue);
+}
+
+/* Edit and Delete link overlay general styles */
+.overlay-dark-background {
+  background-color: rgba(0, 0, 0, 0.39);
   height: 100%;
   left:0;
   position: fixed;
@@ -231,7 +307,7 @@ h1, h2, h3 {
   z-index: 500;
 }
 
-#edit-link-container {
+.overlay-container {
   background: #fff;
   border-radius: 5px;
   left: 50%;
@@ -243,15 +319,29 @@ h1, h2, h3 {
   z-index: 1000;
 }
 
-@media (min-width: 768px) {
-  #edit-link-container {
+@media (min-width: 768px) { /* Increase overlay width on tablet and above */
+  .overlay-container {
     width: 500px;
   }
 }
 
-.blue-input {
-  background: var(--light-grey);
-  border: 1px solid var(--light-blue);
+/* Delete link overlay */
+#delete-link-container-overlay {
+  display: none;
+}
+
+.overlay-btn-container {
+  text-align: right;
+}
+
+.submitted-url-delete {
+  background: var(--mid-blue);
+  border-left: solid 5px var(--light-blue);
+  color: #fff;  
+  display: block;
+  font-weight: 400;
+  margin: var(--small-padding) 0;
+  padding: var(--small-padding);
 }
 
 /* Pagination */
@@ -286,14 +376,14 @@ h1, h2, h3 {
 #footer {
   background: var(--dark-blue);
   color: #fff;
-  padding: var(--mobile-padding);
+  padding: var(--small-padding);
   text-align: center;
 }
 
 /* Results page styling */
 #submission-container {
   height: 450px;
-  padding: 20px var(--mobile-padding);
+  padding: 20px var(--small-padding);
 }
 
 .submitted-url {
@@ -302,14 +392,29 @@ h1, h2, h3 {
   color: #fff;  
   display: block;
   font-weight: 400;
-  margin: var(--mobile-padding);
-  padding: var(--mobile-padding);
+  margin: var(--small-padding);
+  padding: var(--small-padding);
+}
+
+@media (min-width: 768px) { /* Reduce width of input on tablet and larger sizes */
+  .submitted-url {
+    width: 50%;
+  }
+}
+
+#thank-you-msg {
+  margin: var(--large-padding) 0;
+}
+
+#back-button-container {
+  text-align: left;
+  margin: var(--large-padding) 0;
 }
 
 .btn-blue {
   background: var(--mid-blue);
   color: #fff;
-  margin-top: var(--mobile-padding);
+  margin-left: 5px;
 }
 
 .btn-blue:hover{

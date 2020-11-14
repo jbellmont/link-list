@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Create and store a list of bookmarks">
+  <link rel="stylesheet" href="./css/styles.css">
   <!-- FontAwesome icon import -->
   <script src="https://kit.fontawesome.com/b4895fab6a.js" crossorigin="anonymous"></script>
   <title>Link List - Overview</title>
@@ -22,10 +23,11 @@
         <h3 class="form-cta">Create new link</h3>
         <span class="form-label">URL</span> <br>
         <input 
-          type="text"
-          id="create-link-input"
-          class="form-input-field" 
-          placeholder="https://www.google.com" 
+            type="text"
+            id="create-link-input"
+            class="form-input-field form-input-field-half" 
+            placeholder="https://www.google.com" 
+            autocomplete="off"
         >
       </label>
       <br>
@@ -35,30 +37,53 @@
         </div>
         <div class="btn-container-right">
           <button type="submit" class="btn btn-create-link">Add</button>
-          <button type="reset" class="btn btn-reset-link">Reset</button>
+          <button type="reset" id="btn-reset-link" class="btn">Reset</button>
         </div>
       </div>
     </form>
   </div>
 
   <!-- Edit link overlay form -->
-  <div id="edit-link-container-overlay">
-    <div id="edit-link-container">
+  <div id="edit-link-container-overlay" class="overlay-dark-background">
+    <div id="edit-link-container" class="overlay-container">
       <form id="edit-link-form" action="results.html">
         <label>
           Updated URL <br>
-          <input type="text" id="edit-link-input" class="form-input-field blue-input">
+          <input 
+              type="text" 
+              id="edit-link-input" 
+              class="form-input-field blue-input"
+              autocomplete="off"
+          >
         </label>
         <br>
-        <button type="submit" class="btn btn-blue">Update</button>
-        <button type="reset" class="btn btn-blue">Reset</button>
-        <button id="btn-cancel-edit-link" type="button" class="btn btn-blue">Cancel</button>
+        <div class="edit-link-buttons-container">
+          <div class="edit-link-buttons-container-left">
+            <span id="edit-link-error-message">Error message</span>
+          </div>
+          <div class="edit-link-buttons-container-right">
+            <button type="submit" class="btn btn-blue">Update</button>
+            <button type="reset" id="btn-reset-edit" class="btn btn-blue">Reset</button>
+            <button type="button" id="btn-cancel-edit-link" class="btn btn-blue">Cancel</button>
+          </div>
+        </div>
       </form>
     </div>
   </div>
 
   <!-- Rendered link list -->
-  <div id="link-list-container">
+  <div id="link-list-container"></div>
+
+  <!-- Delete link overlay -->
+  <div id="delete-link-container-overlay" class="overlay-dark-background">
+    <div id="delete-link-container" class="overlay-container">
+      <label>Are you sure you want to delete the following URL?</label>
+      <p><span class="submitted-url-delete"></span></p>
+      <div class="overlay-btn-container">
+        <button type="button" id="btn-delete-yes" class="btn btn-blue">Yes</button>
+        <button type="button" id="btn-delete-no" class="btn btn-blue">No</button>
+      </div>
+    </div>
   </div>
 
   <!-- Page navigation -->
@@ -72,6 +97,6 @@
   <footer id="footer"><strong>Link List</strong> - built by Jack Bellmont</footer>
 
   <!-- JS script -->
-  <script src="app.js"></script>
+  <script src="./scripts/app.js"></script>
 </body>
 </html>

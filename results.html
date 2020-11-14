@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="./css/styles.css">
   <!-- FontAwesome icon import -->
   <script src="https://kit.fontawesome.com/b4895fab6a.js" crossorigin="anonymous"></script>
-  <title>Link List - Overview</title>
+  <title>Link List - Results</title>
 </head>
 <body>
   <!-- Page title header -->
@@ -19,18 +19,22 @@
   <div id="submission-container">
     <h3 class="bolder-header">Link submitted successfully <i class="fas fa-check tick"></i></h3>
     <p><span class="submitted-url"></span></p>
-    <p>Thank you for your submission. The link been recorded successfully.</p>
-    <button 
-      type="button" 
-      onclick="location.href='index.html'"
-      class="btn btn-blue"
-    >Back</button>
+    <p id="thank-you-msg">Thank you for your submission. The link been recorded successfully.</p>
+    <div id="back-button-container">
+      <button 
+          type="button" 
+          onclick="location.href='index.html'"
+          class="btn btn-blue"
+      >
+      Back
+      </button>
+    </div>
   </div>
 
   <!-- Footer -->
   <footer id="footer" class="footer-shadow"><strong>Link List</strong> - built by Jack Bellmont</footer>
 
   <!-- JS script -->
-  <script src="results.js"></script>
+  <script src="./scripts/results.js"></script>
 </body>
 </html>

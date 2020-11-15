@@ -386,7 +386,8 @@ h1, h2, h3 {
 
 /* Results page styling */
 #submission-container {
-  height: 450px;
+  /* height: 450px; */
+  flex: 1;
   padding: 20px var(--small-padding);
 }
 

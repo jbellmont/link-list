@@ -50,7 +50,7 @@ A client-side web app that allows users to create a list of URL bookmarks.
 
 ## Limitations
 - CSS uses custom variables (for colours and padding); this is not supported by Microsoft IE. [95% of all users will be supported](https://caniuse.com/?search=custom%20variables), regardless.
-- In the custom form validaion, due to same origin policy restrictions, I could not validate if URLs exist using an http request. 
+- In the custom form validation, due to same origin policy restrictions, I could not validate if URLs exist using an http request. 
 - No cap on the number of links you can add, which may cause visual issues if too many pagination number buttons are created.
 - If a user deletes their localStorage, all links are lost.
 - List order is static (no sorting).
